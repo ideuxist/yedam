@@ -15,7 +15,7 @@ public class CashExample {
         System.out.println("손님이 낸 금액을 입력하세요");
         cash = scn.nextInt();
         if (cash < price ){
-        	System.out.println((price+tax) - cash+"만큼 부족합니다");
+        	System.out.println((price+tax) - cash+"원 부족합니다");
         } else {
         System.out.println("부가세는 " +tax+"입니다");
         double finalPrice =price + tax;
