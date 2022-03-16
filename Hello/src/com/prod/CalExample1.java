@@ -17,7 +17,7 @@ public class CalExample1 {
 		System.out.println(area);
 		double r= 4.5;
 		area= cal.getCircleArea(r);
-		System.out.println(area2);
+		System.out.println(area);
 		
 	}
 
