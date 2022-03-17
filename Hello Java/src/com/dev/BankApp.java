@@ -90,7 +90,7 @@ public class BankApp {
 				}
  				banks[i].setMoney(currAmt+amt); // 잔액 + 입금액
 				break;
-			
+			}
 		
 		if (checkCnt==1) {
 		System.out.println("정상적으로 처리되었습니다.");
@@ -100,10 +100,11 @@ public class BankApp {
 		else {
 			System.out.println("계좌번호가 없습니다.");
 		}
-	
+			}
 		
 	}
 	
+
 
 
 //출금 메소드
