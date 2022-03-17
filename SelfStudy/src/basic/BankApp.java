@@ -160,8 +160,7 @@ public class BankApp {
 	}
 		
 		
-		
-		
+				
 	}
 
 //잔액조회 메소드
