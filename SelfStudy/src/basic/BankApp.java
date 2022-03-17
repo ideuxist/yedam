@@ -159,7 +159,8 @@ public class BankApp {
 		System.out.println("계좌번호를확인해주세요");
 	}
 		
-		
+
+	
 				
 	}
 
@@ -174,6 +175,7 @@ public class BankApp {
 			if (banks[i] != null) {
 				System.out.println(banks[i].toString());
 
+				
 			}
 
 		}
