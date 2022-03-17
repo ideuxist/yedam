@@ -175,6 +175,8 @@ public class BankApp {
 			if (banks[i] != null) {
 				System.out.println(banks[i].toString());
 
+
+				
 				
 			}
 
