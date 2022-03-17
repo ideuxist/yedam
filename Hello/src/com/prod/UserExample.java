@@ -40,13 +40,8 @@ public class UserExample {
 			if (users[i].getUserPoint() > 30000  ) {
 				System.out.println("30000포인트 이상의 유저는 "+users[i].getUserId());	
 				
-				
-				
-				
-				
-				
-				
-			}
+								
+						}
 		}
 }
 }
