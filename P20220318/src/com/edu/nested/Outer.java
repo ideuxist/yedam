@@ -13,6 +13,7 @@ public class Outer {
 			System.out.println("Inner.method2()");
 		}
 	}
+	//함수적 인터페이스
 	interface Runnable {
 		void run();
 	}
@@ -49,8 +50,19 @@ public class Outer {
 		Runnable runnable = new Bus(); //인터페이스의 구현객체
 		runnable.run();
 		
+//		//익명구현객체
+//		runnable = new Runnable () {
+//
+//			@Override
+//			public void run() {
+			runnable = () ->System.out.println("임의의 객체를 실행합니다"); //function
+			//lambda 표현식	
+			
+			
 		
+		
+		
+		runnable.run();
 	}
-	
-
 }
+	
