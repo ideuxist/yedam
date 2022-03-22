@@ -3,10 +3,10 @@ package com.edu.api;
 import java.lang.reflect.Method;
 
 public class ClassExample {
-	public static void main(String[] args) {
+	public static void main(StringExam1[] args) {
 		// String System Member => 관리하는 class
 
-		Class cls = String.class;
+		Class cls = StringExam1.class;
 		try {
 			cls = Class.forName("Java.lang.String");
 		} catch (ClassNotFoundException e) {
@@ -24,7 +24,7 @@ public class ClassExample {
 		
 		cls = Member.class;
 		
-		String path = cls.getResource("ClassExample.class").getPath();
+		StringExam1 path = cls.getResource("ClassExample.class").getPath();
 		System.out.println(path);
 		
 

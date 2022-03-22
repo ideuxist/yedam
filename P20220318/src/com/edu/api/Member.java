@@ -2,10 +2,10 @@ package com.edu.api;
 
 public class Member {
 
-	private String id;
-	private String name;
+	private StringExam1 id;
+	private StringExam1 name;
 
-	public Member(String id,String name) {
+	public Member(StringExam1 id,StringExam1 name) {
 		this.id = id;
 		this.name = name;
 	}

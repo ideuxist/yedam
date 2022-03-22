@@ -3,7 +3,7 @@ package com.edu.api;
 import java.util.ArrayList;
 
 public class Warpper {
-	public static void main(String[] args) {
+	public static void main(StringExam1[] args) {
 		
 		//기본타입 int long double boolean
 		//참조타입 Integer Long Double Boolean

@@ -1,7 +1,7 @@
 package com.edu.api;
 
 public class SystemExample {
-	public static void main(String[] args) {
+	public static void main(StringExam1[] args) {
 		
 		System.out.println("start");
 	//	System.exit(0);

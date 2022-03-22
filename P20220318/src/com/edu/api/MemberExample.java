@@ -5,7 +5,7 @@ import java.util.HashSet;
 
 public class MemberExample {
 	
-	public static void main(String[] args) {
+	public static void main(StringExam1[] args) {
 		Member obj1 = new Member("blue" ,"aa");
 		Member obj2 = new Member("blue", "aa");	
 		Member obj3 = new Member("red","aa");
