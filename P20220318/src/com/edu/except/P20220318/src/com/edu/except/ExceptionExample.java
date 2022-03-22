@@ -1,11 +1,12 @@
 package com.edu.except;
 
-import java.util.InputMismatchException;
+import java.util.InputMismatchException;//asfgfdg
 import java.util.Scanner;
 
 public class ExceptionExample {
 public static void main(String[] args) {
 	// ¿À·ù : Error ,Exception
+	//compile error , runtime error;
 	
 	try {
 	double result = 13/0;
