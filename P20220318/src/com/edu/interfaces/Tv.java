@@ -1,4 +1,4 @@
-package com.edu.except.interfaces;
+package com.edu.interfaces;
 
 public class Tv implements RemoteControl{
 	public void powerOn() {
