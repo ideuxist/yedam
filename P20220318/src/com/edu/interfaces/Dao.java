@@ -1,6 +1,6 @@
 package com.edu.interfaces;
 
-public interface Dao {
+public interface Dao {//extends Run, RemoteControl {
 	
 	public void select();
 	public void insert();
