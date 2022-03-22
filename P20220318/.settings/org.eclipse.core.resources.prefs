@@ -1,5 +1,8 @@
 eclipse.preferences.version=1
+encoding//src/com/edu/api/ClassExample.java=UTF-8
 encoding//src/com/edu/api/MemberExample.java=UTF-8
+encoding//src/com/edu/api/SystemExample.java=UTF-8
+encoding//src/com/edu/api/Warpper.java=UTF-8
 encoding//src/com/edu/except/ExceptionExample.java=UTF-8
 encoding//src/com/edu/except/ExceptionExample2.java=UTF-8
 encoding//src/com/edu/interfaces/DaoExe.java=UTF-8
