@@ -1,5 +1,7 @@
 eclipse.preferences.version=1
+encoding//src/com/edu/interfaces/DaoExe.java=UTF-8
 encoding//src/com/edu/interfaces/MainExe.java=UTF-8
+encoding//src/com/edu/interfaces/MySqlDao.java=UTF-8
 encoding//src/com/edu/interfaces/OracleDao.java=UTF-8
 encoding//src/com/edu/interfaces/Radio.java=UTF-8
 encoding//src/com/edu/interfaces/Refrigarator.java=UTF-8
