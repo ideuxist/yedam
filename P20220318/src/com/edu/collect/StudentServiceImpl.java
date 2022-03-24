@@ -2,7 +2,7 @@ package com.edu.collect;
 
 import java.util.List;
 
-public class StudentSeriveImpl implements StudentService{
+public class StudentServiceImpl implements StudentService{
 
 	@Override
 	public void insertStudent(Student student) {
@@ -30,6 +30,18 @@ public class StudentSeriveImpl implements StudentService{
 
 	@Override
 	public List<Student> studentList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void removeStudent(int sno) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<Student> searchStudent(String name) {
 		// TODO Auto-generated method stub
 		return null;
 	}
