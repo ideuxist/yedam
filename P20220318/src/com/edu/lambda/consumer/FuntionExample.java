@@ -2,8 +2,7 @@ package com.edu.lambda.consumer;
 
 import java.util.function.ToIntFunction;
 
-import com.edu.collect.Student;
-//Function 인터페이스 : 매핑작업. (Student 
+import com.edu.io.Student;
 public class FuntionExample {
 	ToIntFunction<Student> func =
 			(student) -> student.getEngScore()+student.getKorScore();

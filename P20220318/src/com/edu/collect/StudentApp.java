@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import com.edu.io.Student;
+
 public class StudentApp {
 
 	List<Student> list = new ArrayList<Student>();
@@ -160,7 +162,8 @@ public class StudentApp {
 			}
 
 			else if (menu == 9) {
-
+				System.out.println("프로그램을 종료합니다");
+				service.
 				break;
 			} else {
 

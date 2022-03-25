@@ -1,4 +1,4 @@
-package com.edu.collect;
+package com.edu.io;
 
 public class Student {
 	int stuNo ;

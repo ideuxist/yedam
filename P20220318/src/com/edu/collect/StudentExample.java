@@ -3,6 +3,8 @@ package com.edu.collect;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.edu.io.Student;
+
 public class StudentExample {
 	public static void main(String[] args) {
 		List<Student> list = new ArrayList<Student>();
