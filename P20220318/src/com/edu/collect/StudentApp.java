@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import com.edu.io.Student;
-
 public class StudentApp {
 
 	List<Student> list = new ArrayList<Student>();
@@ -13,9 +11,7 @@ public class StudentApp {
 
 //생성자
 	public StudentApp() {
-		list.add(new Student(101, "권가희", 50, 60));
-		list.add(new Student(102, "유해정", 70, 80));
-		list.add(new Student(103, "이유빈", 90, 70));
+		
 	}
 
 	// 멤버 클래스
@@ -36,11 +32,7 @@ public class StudentApp {
 			return null;
 		}
 
-		@Override
-		public Student getStudent() {
-			// TODO Auto-generated method stub
-			return null;
-		}
+		
 
 		@Override
 		public List<Student> studentList() {
@@ -91,10 +83,18 @@ public class StudentApp {
 			}
 			return searchList;
 		}
+
+		@Override
+		public void saveToFile() {
+			;
+			
+		}
 	}
 
 	public void execute() {
-		StudentService service = new StudentServiceImpl();
+		StudentService//service new StudentServiceImpl();
+					   service = new StudentServiceFile();
+					  // service = new StudentServiceOracle();
 		// 메뉴 :1.추가2.리스트.3한건조회.4.수정.9종료
 
 		while (true) {
@@ -163,7 +163,7 @@ public class StudentApp {
 
 			else if (menu == 9) {
 				System.out.println("프로그램을 종료합니다");
-				service.
+				service.saveToFile();
 				break;
 			} else {
 

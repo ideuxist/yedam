@@ -2,7 +2,7 @@ package com.edu.lambda.consumer;
 
 import java.util.function.ToIntFunction;
 
-import com.edu.io.Student;
+import com.edu.collect.Student;
 public class FuntionExample {
 	ToIntFunction<Student> func =
 			(student) -> student.getEngScore()+student.getKorScore();

@@ -2,8 +2,6 @@ package com.edu.collect;
 
 import java.util.List;
 
-import com.edu.io.Student;
-
 public interface StudentService {
 
 	public void insertStudent(Student student); //입력
