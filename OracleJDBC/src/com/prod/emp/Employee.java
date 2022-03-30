@@ -9,8 +9,56 @@ public class Employee {
 	private String salary;
 	private String hireDate;
 	private String jobId;
+	private String phoneNumber;
+	
+	public Employee() {};
+	
+	public Employee(int employeeId) {
+	}
+	
+	public Employee(int employeeId, String firstName, String lastName, String email, String salary, String hireDate,
+			String jobId) {
+		super();
+		this.employeeId = employeeId;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.salary = salary;
+		this.hireDate = hireDate;
+		this.jobId = jobId;
+	}
 	
 	
+	
+	public Employee(int employeeId, String firstName, String lastName, String email, String salary, String hireDate,
+			String jobId, String phoneNumber) {
+		super();
+		this.employeeId = employeeId;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.salary = salary;
+		this.hireDate = hireDate;
+		this.jobId = jobId;
+		this.phoneNumber = phoneNumber;
+	}
+	
+	public Employee(int employeeId,String phoneNumber,String firstName,String salary ) {
+		this.employeeId = employeeId;
+		this.phoneNumber = phoneNumber;
+		this.firstName = firstName;
+		this.salary = salary;
+	}
+	
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
 	public int getEmployeeId() {
 		return employeeId;
 	}

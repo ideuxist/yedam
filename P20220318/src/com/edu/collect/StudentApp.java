@@ -15,91 +15,92 @@ public class StudentApp {
 	}
 
 	// 멤버 클래스
-	public class StudentServiceImpl implements StudentService {
-
-		@Override
-		public void insertStudent(Student student) {
-			list.add(student); // 추가
-		}
-
-		@Override
-		public Student getStudent(int sno) { // 학생번호로 한건조회
-			for (int i = 0; i < list.size(); i++) {
-				if (list.get(i).getStuNo() == sno) {
-					return list.get(i);
-				}
-			}
-			return null;
-		}
-
-		
-
-		@Override
-		public List<Student> studentList() {
-			// TODO Auto-generated method stub
-			return list;
-
-		}
-
-		@Override
-		public void modifyStudent(Student student) {// 수정
-			for (int i = 0; i < list.size(); i++) {
-				if (list.get(i).getStuNo() == student.getStuNo()) {
-					list.get(i).setEngScore(student.getEngScore());
-					list.get(i).setKorScore(student.getKorScore());
-				}
-			}
-		}
-
-		@Override
-		public void removeStudent(int sno) {
-			int cnt = 0;
-			for (int i = 0; i < list.size(); i++) {
-
-				if (list.get(i).getStuNo() == sno) {
-					list.remove(i);
-					System.out.println("삭제되었습니다");
-				} else {
-					cnt++;// fdf
-				}
-
-			}
-			if (cnt > 0) {
-
-				System.out.println("조회된 학생이 없습니다");
-			} else {
-
-			}
-		}
-
-		@Override
-		public List<Student> searchStudent(String name) {
-			List<Student> searchList = new ArrayList<Student>();
-			// 찾으면 값 누적 종료x
-			for (int i = 0; i < list.size(); i++) {
-				if (list.get(i).getStuName().equals(name)) {
-					searchList.add(list.get(i));
-				}
-			}
-			return searchList;
-		}
-
-		@Override
-		public void saveToFile() {
-			;
-			
-		}
-	}
+//	public class StudentServiceImpl implements StudentService {
+//
+//		@Override
+//		public void insertStudent(Student student) {
+//			list.add(student); // 추가
+//		}
+//
+//		@Override
+//		public Student getStudent(int sno) { // 학생번호로 한건조회
+//			for (int i = 0; i < list.size(); i++) {
+//				if (list.get(i).getStuNo() == sno) {
+//					return list.get(i);
+//				}
+//			}
+//			return null;
+//		}
+//
+//		
+//
+//		@Override
+//		public List<Student> studentList() {
+//			// TODO Auto-generated method stub
+//			return list;
+//
+//		}
+//
+//		@Override
+//		public void modifyStudent(Student student) {// 수정
+//			for (int i = 0; i < list.size(); i++) {
+//				if (list.get(i).getStuNo() == student.getStuNo()) {
+//					list.get(i).setEngScore(student.getEngScore());
+//					list.get(i).setKorScore(student.getKorScore());
+//				}
+//			}
+//		}
+//
+//		@Override
+//		public void removeStudent(int sno) {
+//			int cnt = 0;
+//			for (int i = 0; i < list.size(); i++) {
+//
+//				if (list.get(i).getStuNo() == sno) {
+//					list.remove(i);
+//					System.out.println("삭제되었습니다");
+//				} else {
+//					cnt++;// fdf
+//				}
+//
+//			}
+//			if (cnt > 0) {
+//
+//				System.out.println("조회된 학생이 없습니다");
+//			} else {
+//
+//			}
+//		}
+//
+//		@Override
+//		public void searchStudent(int sno) {
+//			List<Student> searchList = new ArrayList<Student>();
+//			// 찾으면 값 누적 종료x
+//			for (int i = 0; i < list.size(); i++) {
+//				if (list.get(i).getStuName().equals(sno)) {
+//					searchList.add(list.get(i));
+//				}
+//			}
+//			//return searchList;
+//		}
+//
+//		@Override
+//		public void saveToFile() {
+//			;
+//			
+//		}
+//	}
 
 	public void execute() {
-		StudentService//service new StudentServiceImpl();
-					   service = new StudentServiceFile();
-					  // service = new StudentServiceOracle();
+		StudentService service =null; //new StudentServiceImpl();
+					   // service = new StudentServiceFile();
+					  
+				      service = new StudentServiceOracle();
 		// 메뉴 :1.추가2.리스트.3한건조회.4.수정.9종료
 
 		while (true) {
 
-			System.out.println("메뉴 :1.추가2.리스트.3한건조회.4.수정.5.삭제 6.이름조회 9.종료");
+			System.out.println("메뉴 :1.추가2.리스트.3이름조회.4.수정.5.삭제 6.한건조회 9.종료");
 			System.out.println("선택>");
 			int menu = scn.nextInt();
 			if (menu == 1) {
@@ -123,10 +124,10 @@ public class StudentApp {
 				}
 
 			} else if (menu == 3) { // 한건조회
-				System.out.println("조회할 학생번호 입력>");
-				int stuNo = scn.nextInt();
-				Student student = service.getStudent(stuNo);
-
+				System.out.println("조회할 학생이름 입력>");
+				String stuName = scn.next();
+				Student student = service.getStudent(stuName);
+				
 				if (student == null) {
 
 					System.out.println("조회된 결과가 없습니다");
@@ -152,12 +153,12 @@ public class StudentApp {
 
 				service.removeStudent(stuNo);
 			} else if (menu == 6) {
-				System.out.println("조회할 학생이름 입력>");
-				String stuName = scn.next();
-				service.searchStudent(stuName);
+				System.out.println("조회할 학생번호 입력>");
+				int  stuNo = scn.nextInt();
+				service.searchStudent(stuNo);
 				// System.out.println(service.);
 
-				System.out.println(service.searchStudent(stuName));
+				//System.out.println(service.searchStudent(stuNo));
 				//return searchList
 			}
 
