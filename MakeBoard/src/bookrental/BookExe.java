@@ -1,4 +1,4 @@
-package Board;
+package bookrental;
 
 public class BookExe {
 	public static void main(String[] args) {

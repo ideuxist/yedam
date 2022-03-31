@@ -1,4 +1,4 @@
-package Board;
+package bookrental;
 
 import java.util.List;
 

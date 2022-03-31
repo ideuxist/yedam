@@ -1,4 +1,4 @@
-package Board;
+package bookrental;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +25,12 @@ public class BookApp {
 				System.out.println("비밀번호");
 				String memberPassword = scn.next();
 				
+			} else if(login==2){
+				System.out.println("회원 아이디입력");
+				String memberId= scn.next();
+				System.out.println("비밀번호");
+				String memberPassword = scn.next();
+			
 			}
 
 			System.out.println("메뉴:1.도서등록 2.도서 목록 3.도서 찾기 4.도서 수정 5.도서 삭제 6.대여  7.반납 0. 종료");
