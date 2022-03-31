@@ -16,7 +16,7 @@ public class StudentServiceOracle extends DAO implements StudentService {
 			psmt.setInt(1, student.getStuNo());
 			psmt.setString(2, student.getStuName());
 			psmt.setInt(3, student.getEngScore());
-			psmt.setInt(4, student.getKorScore());
+			psmt.setInt(4, student.getKorScore()); 
 			int r = psmt.executeUpdate();
 			System.out.println(r+"건 입력됨");
 			
@@ -74,7 +74,7 @@ public class StudentServiceOracle extends DAO implements StudentService {
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e.printStackTrace(); 
 		} finally {
 			disconnect();
 		}

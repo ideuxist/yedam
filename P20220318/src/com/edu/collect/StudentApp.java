@@ -123,7 +123,7 @@ public class StudentApp {
 					System.out.println(s.toString());
 				}
 
-			} else if (menu == 3) { // 한건조회
+			} else if (menu == 3) { // 이름조회
 				System.out.println("조회할 학생이름 입력>");
 				String stuName = scn.next();
 				Student student = service.getStudent(stuName);
