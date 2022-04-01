@@ -4,7 +4,58 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.plaf.basic.BasicDesktopIconUI;
+
 public class BookRentalServiceOracle extends BookDAO implements BookRentalService {
+
+	@Override
+	public boolean memberCheck(BookMember member) { 
+		conn = getConnect();
+		String sql = "select member_id,member_password " + "from book_member_info "
+				+ "where member_id=? and member_password=?";
+//		try {
+//			psmt = conn.prepareStatement(sql);
+//			rs = psmt.executeQuery();
+//			while (rs.next()) {
+//				BookMember member2 = new BookMember();
+//				member2.setMemberId(rs.getString("member_id"));
+//				member2.setMemberPassword(rs.getString("member_password"));
+//				System.out.println(member2.toString());
+//				
+//				if (member.equals(member2)) {
+//					System.out.println("관리자로 로그인 되었습니다");
+//				} else {
+//					System.out.println("다시 로그인 해주세요");
+//				}
+//				
+
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, member.getMemberId());
+			psmt.setString(2, member.getMemberPassword());
+			rs = psmt.executeQuery();
+			if (rs.next()) {
+//				if ((rs.getString("member_id")).equals(member.getMemberId())
+//						&& ((rs.getString("member_password")).equals(member.getMemberPassword())))
+//				{
+//					System.out.println("관리자로 로그인되었습니다");
+
+				System.out.println("관리자로 로그인 되었습니다");
+				return true;
+			} else {
+				System.out.println("잘못 입력하셨습니다");
+				return false;
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		} finally {
+			disconnect();
+		}
+
+	}
 
 	@Override
 	public void registBook(Book book) {
@@ -70,16 +121,16 @@ public class BookRentalServiceOracle extends BookDAO implements BookRentalServic
 		List<Book> list = new ArrayList<Book>();
 		Book book = null;
 		conn = getConnect();
-		
-		String sql = "select * from book_info where book_name like '%"+bookName+"%'";
-				
+
+		String sql = "select * from book_info where book_name like '%" + bookName + "%'";
+
 		try {
 			psmt = conn.prepareStatement(sql);
-		
+
 			rs = psmt.executeQuery();
 			int i = 0;
-			while(rs.next()) { 
-				
+			while (rs.next()) {
+
 				book = new Book();
 				book.setBookName(rs.getString("book_name"));
 				book.setWriter(rs.getString("writer"));
@@ -90,17 +141,18 @@ public class BookRentalServiceOracle extends BookDAO implements BookRentalServic
 				book.setRentDate(rs.getString("rent_date"));
 				book.setReturnDate(rs.getString("return_date"));
 				list.add(book);
-				i=i+1;
-			}if (i>0) {
-				System.out.println(i+"건 조회결과가 있습니다");
-			}else {
+				i = i + 1;
+			}
+			if (i > 0) {
+				System.out.println(i + "건 조회결과가 있습니다");
+			} else {
 				System.out.println("조회된 결과가 없습니다");
 			}
-			
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally {
+		} finally {
 			disconnect();
 		}
 		return list;
@@ -108,20 +160,71 @@ public class BookRentalServiceOracle extends BookDAO implements BookRentalServic
 
 	@Override
 	public void modifyBook(Book book) {
-		// TODO Auto-generated method stub
+		conn = getConnect();
+		String sql = "update book_info\r\n"
+				     + "set book_name = ? , writer = ? , \r\n"
+				     + "publisher = ?, book_price = ? ,rental_possible= ?,\r\n"
+				     + "rent_name = ? , rent_date = ? , return_date= ?"
+				     + "where book_name= ?";
+				     
+		try {
+			psmt=conn.prepareStatement(sql);
+			psmt.setString(1, book.getBookName());
+			psmt.setString(2, book.getWriter());
+			psmt.setString(3, book.getPublisher());
+			psmt.setInt(4, book.getBookPrice());
+			psmt.setString(5, book.getRentalPossible());
+			psmt.setString(6, book.getRentName());
+			psmt.setString(7, book.getRentDate());
+			psmt.setString(8, book.getReturnDate());
+			psmt.setString(9, book.getBookName());
+			
+			psmt.executeUpdate();
+			System.out.println(book.getBookName()+"(이)가 수정되었습니다");
+			
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			disconnect();
+		}
+		
 
 	}
 
 	@Override
-	public void deleteBook() {
-		// TODO Auto-generated method stub
-
+	public void deleteBook(String bookName) {
+		conn = getConnect();
+		String sql = "delete book_info where book_name = ? ";
+		try {
+			psmt= conn.prepareStatement(sql);
+			psmt.setString(1,bookName);
+			psmt.executeUpdate();
+			System.out.println(bookName+"정보가 삭제되었습니다");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			disconnect();
+		}
+		
 	}
 
 	@Override
-	public void rentalBook() {
-		// TODO Auto-generated method stub
-
+	public void rentalBook(String bookName) {
+		conn=getConnect();
+		String sql = "update book_info where rental_possible = ? "
+				     +"rent_date = ? , return_date = ?";
+		try {
+			psmt= conn.prepareStatement(sql);
+			psmt.setString(1, "y");
+			psmt.executeUpdate();
+			System.out.println(bookName + "을 대여처리 하였습니다");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
