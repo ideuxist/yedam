@@ -135,7 +135,7 @@ public class StudentApp {
 					System.out.println(student.toString());
 				}
 
-			} else if (menu == 4) {
+			} else if (menu == 4) { 
 
 				System.out.println("수정할 학생번호 입력 >");
 				int stuNo = scn.nextInt();

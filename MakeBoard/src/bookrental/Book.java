@@ -12,6 +12,13 @@ public class Book {
 	private String returnDate;
 	 
 	Book () {}
+	
+	Book(String bookName,String rentName,String rentDate,String returnDate) {
+		this.bookName = bookName;
+		this.rentName = rentName;
+		this.rentDate = rentDate;
+		this.returnDate = returnDate;
+	}
  
 	public Book(String bookName,String writer, String publisher, int bookPrice, String rentalPossible) {
 		super();
@@ -76,7 +83,7 @@ public class Book {
 	}
 
 	public String getRentName() {
-		return rentName;
+		return rentName; 
 	}
 
 	public void setRentName(String rentName) {
@@ -101,11 +108,15 @@ public class Book {
 
 	@Override
 	public String toString() {
-		return "Book [책제목: " + bookName + ", 저자: " + writer + ", 출판사: " + publisher + ", 가격: "
+		return "[책제목: " + bookName + ", 저자: " + writer + ", 출판사: " + publisher + ", 가격: "
 				+ bookPrice + ", 대여가능여부: " + rentalPossible + ", 대여자이름: " + rentName + ", 대여일: " + rentDate
 				+ ", 반납예정일: " + returnDate + "]";
 	}
 	
+	public String toString2() {
+		return "[책제목: " + bookName + ", 저자: " + writer + ", 출판사: " + publisher + ", 가격: "
+				+ bookPrice + ", 대여가능여부: " + rentalPossible + "]";
+	}
 	
  
 }

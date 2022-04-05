@@ -36,7 +36,7 @@ public class BookMember {
 		this.memberPassword = memberPassword;
 	}
 
-	public String getPhoneNumber() {
+	public String getPhoneNumber() { 
 		return phoneNumber;
 	}
 
@@ -47,6 +47,10 @@ public class BookMember {
 	@Override
 	public String toString() {
 		return "BookMember [memberId=" + memberId + ", memberPassword=" + memberPassword + ", phoneNumber="
+				+ phoneNumber + "]";
+	}
+	public String toString2() {
+		return "회원 [회원아이디=" + memberId + ", 연락처="
 				+ phoneNumber + "]";
 	}
 	
