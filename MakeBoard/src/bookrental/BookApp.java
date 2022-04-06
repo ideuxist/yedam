@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -21,7 +22,10 @@ public class BookApp {
 		while (true) {
 
 			System.out.println("1.관리자 로그인 2.회원 로그인 3.회원가입 0.프로그램종료");
+
 			int login = scn.nextInt();
+			scn.nextLine();
+
 			if (login == 1) {
 				System.out.println("관리자 ID>");
 				String memberId = scn.next();
@@ -38,19 +42,46 @@ public class BookApp {
 						System.out.println("메뉴:1.도서등록 2.도서 목록 3.도서 찾기 4.도서 수정 5.도서 삭제 6.대여  7.반납 8.회원 조회 0. 돌아가기");
 						System.out.println("메뉴선택>");
 						int menu = scn.nextInt();
-
+						scn.nextLine();
+						// System.out.println(str);
 						if (menu == 1) {
 							// 도서등록
 							System.out.println("책제목 입력>");
-							String bookName = scn.next();
+							String bookName = scn.nextLine();
 							System.out.println("저자 입력>");
-							String writer = scn.next();
+							String writer = scn.nextLine();
 							System.out.println("출판사 입력>");
-							String publisher = scn.next();
-							System.out.println("가격 입력>");
-							int bookPrice = scn.nextInt();
-							System.out.println("대여가능여부 입력>");
-							String rentalPossible = scn.next();
+							String publisher = scn.nextLine();
+							int bookPrice = 0;
+
+							while (true) {
+
+								System.out.println("가격 입력>");
+								try {
+									bookPrice = scn.nextInt();
+									scn.nextLine();
+									break;
+								} catch (InputMismatchException e) {
+									System.out.println("숫자만 입력하세요");
+									scn.nextLine();
+									continue;
+								}
+
+							}
+							String rentalPossible;
+							while (true) {
+								System.out.println("대여가능여부 입력>");
+								rentalPossible = scn.nextLine();
+								char yOrn = rentalPossible.charAt(0);
+								System.out.println(yOrn);
+								if ((yOrn == 'Y' || yOrn == 'y' || yOrn == 'N' || yOrn == 'n')) {
+									break;
+								} else {
+									System.out.println("가능시 Y or y 불가시 N or n 정확히 입력해주세요");
+
+									continue;
+								}
+							}
 
 							Book book = new Book(bookName, writer, publisher, bookPrice, rentalPossible);
 
@@ -66,7 +97,7 @@ public class BookApp {
 						} else if (menu == 3) {
 							// 도서찾기
 							System.out.println("책 제목으로 검색>");
-							String bookName = scn.next();
+							String bookName = scn.nextLine();
 							List<Book> list = service.searchBook(bookName);
 
 							for (Book b : list) {
@@ -77,35 +108,36 @@ public class BookApp {
 						} else if (menu == 4) {
 							// 도서정보수정
 							System.out.println("책제목 입력>");
-							String bookName = scn.next();
+							String bookName = scn.nextLine();
 							System.out.println("저자 입력>");
-							String writer = scn.next();
+							String writer = scn.nextLine();
 							System.out.println("출판사 입력>");
-							String publisher = scn.next();
+							String publisher = scn.nextLine();
 							System.out.println("가격 입력>");
 							int bookPrice = scn.nextInt();
+							scn.nextLine();
 							System.out.println("대여가능여부 입력>");
-							String rentalPossible = scn.next();
+							String rentalPossible = scn.nextLine();
 							System.out.println("대여자 이름 입력>");
-							String rentName = scn.next();
+							String rentName = scn.nextLine();
 							System.out.println("대여일 입력");
-							String rentDate = scn.next();
+							String rentDate = scn.nextLine();
 							System.out.println("반납예정일 입력");
-							String returnDate = scn.next();
+							String returnDate = scn.nextLine();
 							Book book = new Book(bookName, writer, publisher, bookPrice, rentalPossible, rentName,
 									rentDate, returnDate);
 							service.modifyBook(book);
 
 						} else if (menu == 5) {
 							System.out.println("삭제하실 책 제목을 입력하세요");
-							String bookName = scn.next();
+							String bookName = scn.nextLine();
 							service.deleteBook(bookName);
 
 						} else if (menu == 6) {
 							System.out.println("대여하실 책 제목을 입력하세요");
-							String bookName = scn.next();
+							String bookName = scn.nextLine();
 							System.out.println("대여자 아이디를 입력하세요");
-							String rentName = scn.next();
+							String rentName = scn.nextLine();
 							Calendar cal = Calendar.getInstance();
 							Date d = new Date(cal.getTimeInMillis());
 							SimpleDateFormat formatter = new SimpleDateFormat("yyyy년 MM월 dd일");
@@ -152,57 +184,69 @@ public class BookApp {
 
 			} else if (login == 2) {
 				System.out.println("회원 아이디입력");
-				String memberId = scn.next();
+				String memberId = scn.nextLine();
 				System.out.println("비밀번호");
-				String memberPassword = scn.next();
+				String memberPassword = scn.nextLine();
 
 				BookMember member = new BookMember();
 				member.setMemberId(memberId);
 				member.setMemberPassword(memberPassword);
 
 				if (service.memberCheck(member) == true && !memberId.equals("admin")) {
-					System.out.println("1.대여 2.반납 3.책 조회 0.돌아가기");
 					int menu;
+					while (true ) {
+						try {
 
-					switch (menu = scn.nextInt()) {
-					case 1:
-						System.out.println("대여하실 책 제목을 입력하세요");
-						String bookName = scn.next();
-						Calendar cal = Calendar.getInstance();
-						Date d = new Date(cal.getTimeInMillis());
-						SimpleDateFormat formatter = new SimpleDateFormat("yyyy년 MM월 dd일");
-						String rentDate = formatter.format(d);
-						Calendar cal2 = Calendar.getInstance();
-						cal2.add(Calendar.DATE, 5);
-						Date d2 = new Date(cal2.getTimeInMillis());
-						String returnDate = formatter.format(d2);
-						Book book = new Book(bookName, memberId, rentDate, returnDate);
-						service.rentalBook(book);
-						break;
-					case 2:
-						System.out.println("반납하실 책 제목을 입력하세요");
-						bookName = scn.next();
-						memberId = null;
-						rentDate = null;
-						returnDate = null;
-						Book book2 = new Book(bookName, memberId, rentDate, returnDate);
-						service.returnBook(book2);
-						break;
+							System.out.println("1.대여 2.반납 3.책 조회 0.돌아가기");
+							switch (menu = scn.nextInt()) {
+							case 1:
+								scn.nextLine();
+								System.out.println("대여하실 책 제목을 입력하세요");
+								String bookName = scn.nextLine();
+								Calendar cal = Calendar.getInstance();
+								Date d = new Date(cal.getTimeInMillis());
+								SimpleDateFormat formatter = new SimpleDateFormat("yyyy년 MM월 dd일");
+								String rentDate = formatter.format(d);
+								Calendar cal2 = Calendar.getInstance();
+								cal2.add(Calendar.DATE, 5);
+								Date d2 = new Date(cal2.getTimeInMillis());
+								String returnDate = formatter.format(d2);
+								Book book = new Book(bookName, memberId, rentDate, returnDate);
+								service.rentalBook(book);
+								continue;
+							case 2:
+								scn.nextLine();
+								System.out.println("반납하실 책 제목을 입력하세요");
+								bookName = scn.nextLine();
+								memberId = null;
+								rentDate = null;
+								returnDate = null;
+								Book book2 = new Book(bookName, memberId, rentDate, returnDate);
+								service.returnBook(book2);
+								continue;
+							case 3:
+								scn.nextLine();
+								System.out.println("책 제목으로 검색>");
+								bookName = scn.nextLine();
+								List<Book> list = service.searchBook2(bookName);
 
-					case 3:
-						System.out.println("책 제목으로 검색>");
-						bookName = scn.next();
-						List<Book> list = service.searchBook2(bookName);
+								for (Book b : list) {
+									System.out.println(b.toString2());
+								}
+								continue;
+							case 0:
+								break;
+							default:
+								break;
 
-						for (Book b : list) {
-							System.out.println(b.toString2());
+							}
+						} catch (InputMismatchException e) {
+							scn.nextLine();
+							System.out.println("메뉴를 정확히 선택해주세요");
+							continue;
 						}
-
-					case 0:
+						
 						break;
-					default:
-						break;
-
 					}
 
 				} else {
@@ -214,13 +258,13 @@ public class BookApp {
 				// 회원가입
 				while (true) {
 					System.out.println("가입하실 아이디를 입력하세요");
-					String memberId = scn.next();
+					String memberId = scn.nextLine();
 					System.out.println("연락처를 입력해 주세요");
-					String memberPhoneNumber = scn.next();
+					String memberPhoneNumber = scn.nextLine();
 					System.out.println("사용하실 비밀번호를 입력하세요");
-					String memberPassword = scn.next();
+					String memberPassword = scn.nextLine();
 					System.out.println("다시 한번 비밀번호를 입력하세요");
-					String memberPassword2 = scn.next();
+					String memberPassword2 = scn.nextLine();
 					if (memberPassword.equals(memberPassword2)) {
 						BookMember bookMember = new BookMember(memberId, memberPassword, memberPhoneNumber);
 						service.joinBookMember(bookMember);
@@ -230,13 +274,14 @@ public class BookApp {
 					}
 				}
 
-			} else {
+			} else if (login == 0) {
 				System.out.println("프로그램을 종료합니다");
 				break;
+			} else {
+				continue;
 			}
 
 		}
 	}
 
 }
-
