@@ -10,33 +10,34 @@ public class Book {
 	private String rentName;
 	private String rentDate;
 	private String returnDate;
-	 
-	Book () {}
-	
-	Book(String bookName,String rentName,String rentDate,String returnDate) {
+
+	Book() {
+	}
+
+	Book(String bookName, String rentName, String rentDate, String returnDate) {
 		this.bookName = bookName;
 		this.rentName = rentName;
 		this.rentDate = rentDate;
 		this.returnDate = returnDate;
 	}
- 
-	public Book(String bookName,String writer, String publisher, int bookPrice, String rentalPossible) {
+
+	public Book(String bookName, String writer, String publisher, int bookPrice, String rentalPossible) {
 		super();
 		this.bookName = bookName;
 		this.writer = writer;
 		this.publisher = publisher;
 		this.bookPrice = bookPrice;
-		this.rentalPossible = rentalPossible; 
+		this.rentalPossible = rentalPossible;
 	}
-	
-	public Book(String bookName, String writer, String publisher, int bookPrice, String rentalPossible,
-			String rentName, String rentDate, String returnDate) {
+
+	public Book(String bookName, String writer, String publisher, int bookPrice, String rentalPossible, String rentName,
+			String rentDate, String returnDate) {
 		super();
 		this.bookName = bookName;
 		this.writer = writer;
 		this.publisher = publisher;
 		this.bookPrice = bookPrice;
-		this.rentalPossible = rentalPossible; 
+		this.rentalPossible = rentalPossible;
 		this.rentName = rentName;
 		this.rentDate = rentDate;
 		this.returnDate = returnDate;
@@ -74,7 +75,7 @@ public class Book {
 		this.bookPrice = bookPrice;
 	}
 
-	public String getRentalPossible() { 
+	public String getRentalPossible() {
 		return rentalPossible;
 	}
 
@@ -83,7 +84,7 @@ public class Book {
 	}
 
 	public String getRentName() {
-		return rentName; 
+		return rentName;
 	}
 
 	public void setRentName(String rentName) {
@@ -95,10 +96,10 @@ public class Book {
 	}
 
 	public void setRentDate(String rentDate) {
-		this.rentDate = rentDate; 
+		this.rentDate = rentDate;
 	}
-  
-	public String getReturnDate() {  
+
+	public String getReturnDate() {
 		return returnDate;
 	}
 
@@ -108,15 +109,18 @@ public class Book {
 
 	@Override
 	public String toString() {
-		return "[책제목: " + bookName + ", 저자: " + writer + ", 출판사: " + publisher + ", 가격: "
-				+ bookPrice + ", 대여가능여부: " + rentalPossible + ", 대여자이름: " + rentName + ", 대여일: " + rentDate
-				+ ", 반납예정일: " + returnDate + "]";
+		//return String.format("%s\t%3d\t%s", fullName, relativeScore, testScore); 
+		//int a,b,c,d,e,f,g,h;
+//		String result ="[책제목: " + bookName + ", 저자: " + writer + "     , 출판사: " + publisher + ", 가격: " + bookPrice
+//				      + ", 대여가능여부: " + rentalPossible + ", 대여자이름: " + rentName + ", 대여일: " + rentDate + ", 반납예정일: "
+//				      + returnDate + "]";
+		 return String.format("책제목 :%-15s저자 :%-8s출판사 :%-8s가격: %-8d대여가능여부 :%-2s대여자이름 : %-10s대여일 : %-30s반납예정일 : %-30s" 
+				 ,bookName,writer,publisher,bookPrice,rentalPossible,rentName,rentDate,returnDate);
 	}
-	
+
 	public String toString2() {
-		return "[책제목: " + bookName + ", 저자: " + writer + ", 출판사: " + publisher + ", 가격: "
-				+ bookPrice + ", 대여가능여부: " + rentalPossible + "]";
+		return "[책제목: " + bookName + ", 저자: " + writer + ", 출판사: " + publisher + ", 가격: " + bookPrice + ", 대여가능여부: "
+				+ rentalPossible + "]";
 	}
-	
- 
+
 }

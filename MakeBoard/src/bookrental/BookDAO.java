@@ -17,12 +17,12 @@ public class BookDAO {
 		public Connection getConnect() {
 			try {
 				Class.forName("oracle.jdbc.driver.OracleDriver");
-				conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "hr", "hr");
+				conn = DriverManager.getConnection("jdbc:oracle:thin:@192.168.0.3:1521:xe", "hr", "hr");
 			} catch (ClassNotFoundException | SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			System.out.println("연결성공");
+			System.out.println("=====================>");
 			return conn;
 
 		}
@@ -38,7 +38,7 @@ public class BookDAO {
 
 				if (conn != null)
 					conn.close();
-				System.out.println("접속종료");
+				System.out.println("<=====================");
 				
 
 			} catch (SQLException e) {

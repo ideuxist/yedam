@@ -20,12 +20,20 @@ public class BookApp {
 		BookRentalService service = new BookRentalServiceOracle();
 
 		while (true) {
-
-			System.out.println("1.관리자 로그인 2.회원 로그인 3.회원가입 0.프로그램종료");
-
-			int login = scn.nextInt();
-			scn.nextLine();
-
+			int login;
+			System.out.println("1.관리자 로그인 2.회원 로그인 3.회원가입 0.프로그램종료 \n"
+					+"관리자 admin/admin 회원 test/1111");
+			try {
+				login = scn.nextInt();
+				scn.nextLine();
+				
+			} catch (InputMismatchException e) {
+				System.out.println("숫자만 입력하세요");
+				scn.nextLine();
+				
+				continue;
+			}
+			
 			if (login == 1) {
 				System.out.println("관리자 ID>");
 				String memberId = scn.next();
@@ -38,7 +46,10 @@ public class BookApp {
 				// System.out.println(member.toString());
 
 				if (service.memberCheck(member) == true && memberId.equals("admin")) {
+					System.out.println("관리자로 접속하셨습니다");
 					while (true) {
+						
+						try {
 						System.out.println("메뉴:1.도서등록 2.도서 목록 3.도서 찾기 4.도서 수정 5.도서 삭제 6.대여  7.반납 8.회원 조회 0. 돌아가기");
 						System.out.println("메뉴선택>");
 						int menu = scn.nextInt();
@@ -174,11 +185,21 @@ public class BookApp {
 							break;
 						}
 
-					}
-				}
+					
+				
 
-				// 관리자 로그인실패//
-				else {
+				
+				} catch (InputMismatchException e) {
+					scn.nextLine();
+					System.out.println("다시 입력해주세요");
+					continue;
+					
+				}
+				
+				}
+			}
+			
+			else {
 					System.out.println("아이디 비번을 확인해주세요");
 				}
 
@@ -194,7 +215,7 @@ public class BookApp {
 
 				if (service.memberCheck(member) == true && !memberId.equals("admin")) {
 					int menu;
-					while (true ) {
+					
 						try {
 
 							System.out.println("1.대여 2.반납 3.책 조회 0.돌아가기");
@@ -213,7 +234,7 @@ public class BookApp {
 								String returnDate = formatter.format(d2);
 								Book book = new Book(bookName, memberId, rentDate, returnDate);
 								service.rentalBook(book);
-								continue;
+								break;
 							case 2:
 								scn.nextLine();
 								System.out.println("반납하실 책 제목을 입력하세요");
@@ -223,7 +244,7 @@ public class BookApp {
 								returnDate = null;
 								Book book2 = new Book(bookName, memberId, rentDate, returnDate);
 								service.returnBook(book2);
-								continue;
+								break;
 							case 3:
 								scn.nextLine();
 								System.out.println("책 제목으로 검색>");
@@ -233,21 +254,22 @@ public class BookApp {
 								for (Book b : list) {
 									System.out.println(b.toString2());
 								}
-								continue;
+								break;
 							case 0:
 								break;
 							default:
 								break;
 
-							}
+							}//switch문 종료
+						
 						} catch (InputMismatchException e) {
 							scn.nextLine();
 							System.out.println("메뉴를 정확히 선택해주세요");
 							continue;
 						}
 						
-						break;
-					}
+						
+					//while문 종료
 
 				} else {
 					System.out.println("아이디 비번을 확인해주세요");
@@ -268,6 +290,8 @@ public class BookApp {
 					if (memberPassword.equals(memberPassword2)) {
 						BookMember bookMember = new BookMember(memberId, memberPassword, memberPhoneNumber);
 						service.joinBookMember(bookMember);
+						System.out.println("가입이 되었습니다");
+						break;
 					} else {
 						System.out.println("입력하신 비밀번호가 다릅니다 다시 시도해주세요");
 

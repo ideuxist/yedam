@@ -9,7 +9,7 @@ import javax.swing.plaf.basic.BasicDesktopIconUI;
 public class BookRentalServiceOracle extends BookDAO implements BookRentalService {
 
 	@Override
-	public boolean memberCheck(BookMember member) { 
+	public boolean memberCheck(BookMember member) {
 		conn = getConnect();
 		String sql = "select member_id,member_password " + "from book_member_info "
 				+ "where member_id=? and member_password=?";
@@ -40,7 +40,7 @@ public class BookRentalServiceOracle extends BookDAO implements BookRentalServic
 //				{
 //					System.out.println("관리자로 로그인되었습니다");
 
-				//System.out.println("로그인 성공");
+				// System.out.println("로그인 성공");
 				return true;
 			} else {
 				System.out.println("아이디 혹은 비밀번호가 잘못되었습니다");
@@ -163,11 +163,11 @@ public class BookRentalServiceOracle extends BookDAO implements BookRentalServic
 		List<Book> list = new ArrayList<Book>();
 		Book book = null;
 		conn = getConnect();
-        String bookname=null;
-        String writer=null;
-        String publisher=null;
-        int bookPrice=0;
-        String rentalPossible=null;
+		String bookname = null;
+		String writer = null;
+		String publisher = null;
+		int bookPrice = 0;
+		String rentalPossible = null;
 		String sql = "select * from book_info where book_name like '%" + bookName + "%'";
 
 		try {
@@ -177,15 +177,13 @@ public class BookRentalServiceOracle extends BookDAO implements BookRentalServic
 			int i = 0;
 			while (rs.next()) {
 
-				book = new Book(bookname,writer,publisher,bookPrice,rentalPossible);
+				book = new Book(bookname, writer, publisher, bookPrice, rentalPossible);
 				book.setBookName(rs.getString("book_name"));
 				book.setWriter(rs.getString("writer"));
 				book.setPublisher(rs.getString("publisher"));
 				book.setBookPrice(rs.getInt("book_price"));
 				book.setRentalPossible(rs.getString("rental_possible"));
-				
-				
-				
+
 				list.add(book);
 				i = i + 1;
 			}
@@ -207,14 +205,12 @@ public class BookRentalServiceOracle extends BookDAO implements BookRentalServic
 	@Override
 	public void modifyBook(Book book) {
 		conn = getConnect();
-		String sql = "update book_info\r\n"
-				     + "set book_name = ? , writer = ? , \r\n"
-				     + "publisher = ?, book_price = ? ,rental_possible= ?,\r\n"
-				     + "rent_name = ? , rent_date = ? , return_date= ?"
-				     + "where book_name= ?";
-				     
+		String sql = "update book_info\r\n" + "set book_name = ? , writer = ? , \r\n"
+				+ "publisher = ?, book_price = ? ,rental_possible= ?,\r\n"
+				+ "rent_name = ? , rent_date = ? , return_date= ?" + "where book_name= ?";
+
 		try {
-			psmt=conn.prepareStatement(sql);
+			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, book.getBookName());
 			psmt.setString(2, book.getWriter());
 			psmt.setString(3, book.getPublisher());
@@ -224,18 +220,16 @@ public class BookRentalServiceOracle extends BookDAO implements BookRentalServic
 			psmt.setString(7, book.getRentDate());
 			psmt.setString(8, book.getReturnDate());
 			psmt.setString(9, book.getBookName());
-			
+
 			psmt.executeUpdate();
-			System.out.println(book.getBookName()+"(이)가 수정되었습니다");
-			
-		
+			System.out.println(book.getBookName() + "(이)가 수정되었습니다");
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally {
+		} finally {
 			disconnect();
 		}
-		
 
 	}
 
@@ -243,41 +237,68 @@ public class BookRentalServiceOracle extends BookDAO implements BookRentalServic
 	public void deleteBook(String bookName) {
 		conn = getConnect();
 		String sql = "delete book_info where book_name = ? ";
+		String sql2 = "select * from book_info where book_name =?";;
 		try {
-			psmt= conn.prepareStatement(sql);
-			psmt.setString(1,bookName);
-			psmt.executeUpdate();
-			System.out.println(bookName+"정보가 삭제되었습니다");
+
+			while (true) {
+				psmt = conn.prepareStatement(sql2);
+				psmt.setString(1, bookName);
+				rs = psmt.executeQuery();
+				if (rs.next()) {
+					psmt = conn.prepareStatement(sql);
+					psmt.setString(1, bookName);
+					psmt.executeUpdate();
+					System.out.println(bookName + "정보가 삭제되었습니다");
+				} else {
+					System.out.println("책이름을 다시 한번 확인해주세요");
+					break;
+				}
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally {
+		} finally {
 			disconnect();
 		}
-		
+
 	}
 
 	@Override
 	public void rentalBook(Book book) {
-		conn=getConnect();
-		String sql =   "update book_info\r\n"
-			     + "set rental_possible= ?,\r\n"
-			     + "rent_name = ? , rent_date = ? , return_date= ?"
-			     + "where book_name= ?";
+		conn = getConnect();
+		String sql = "update book_info\r\n" + "set rental_possible= ?,\r\n"
+				+ "rent_name = ? , rent_date = ? , return_date= ?" + "where book_name= ?";
+		String sql2 = "select * from book_info where book_name =?";
+//		psmt = conn.prepareStatement(sql);
+//		psmt.setString(1, member.getMemberId());
+//		psmt.setString(2, member.getMemberPassword());
+//		rs = psmt.executeQuery();
 		try {
-			psmt= conn.prepareStatement(sql);
-			psmt.setString(1, "n");
-			psmt.setString(2, book.getRentName());
-			psmt.setString(3, book.getRentDate());
-			psmt.setString(4, book.getReturnDate());
-			psmt.setString(5, book.getBookName());
-			psmt.executeUpdate();
-			System.out.println(book.getBookName()+"을(를) 대여처리 하였습니다");
-			
+
+			while (true) {
+				psmt = conn.prepareStatement(sql2);
+				psmt.setString(1, book.getBookName());
+				rs = psmt.executeQuery();
+				if (rs.next()) {
+					psmt = conn.prepareStatement(sql);
+					psmt.setString(1, "n");
+					psmt.setString(2, book.getRentName());
+					psmt.setString(3, book.getRentDate());
+					psmt.setString(4, book.getReturnDate());
+					psmt.setString(5, book.getBookName());
+					psmt.executeUpdate();
+					System.out.println(book.getBookName() + "을(를) 대여처리 하였습니다");
+					break;
+				} else {
+					System.out.println("잘못입력하셨습니다 다시 확인해주세요");
+					break;
+				}
+
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally {
+		} finally {
 			disconnect();
 		}
 	}
@@ -285,47 +306,59 @@ public class BookRentalServiceOracle extends BookDAO implements BookRentalServic
 	@Override
 	public void returnBook(Book book) {
 		conn = getConnect();
-		String sql ="update book_info\r\n"
-			     + "set rental_possible= ?,\r\n"
-			     + "rent_name = ? , rent_date = ? , return_date= ?"
-			     + "where book_name= ?";
+		String sql = "update book_info\r\n" + "set rental_possible= ?,\r\n"
+				+ "rent_name = ? , rent_date = ? , return_date= ?" + "where book_name= ?";
+		String sql2 = "select * from book_info where book_name =?";
 		try {
-			psmt= conn.prepareStatement(sql);
-			psmt.setString(1, "n");
-			psmt.setString(2, book.getRentName());
-			psmt.setString(3, book.getRentDate());
-			psmt.setString(4, book.getReturnDate());
-			psmt.setString(5, book.getBookName());
-			psmt.executeUpdate();
-			System.out.println(book.getBookName()+"을(를) 반납처리 하였습니다");
+
+			while (true) {
+				psmt = conn.prepareStatement(sql2);
+				psmt.setString(1, book.getBookName());
+				rs = psmt.executeQuery();
+				if (rs.next()) {
+					psmt = conn.prepareStatement(sql);
+					psmt.setString(1, "y");
+					psmt.setString(2, book.getRentName());
+					psmt.setString(3, book.getRentDate());
+					psmt.setString(4, book.getReturnDate());
+					psmt.setString(5, book.getBookName());
+					psmt.executeUpdate();
+					System.out.println(book.getBookName() + "을(를) 반납처리 하였습니다");
+					break;
+				} else {
+					System.out.println("잘못입력하셨습니다 다시 확인해주세요");
+					break;
+				}
+
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally { 
+		} finally {
 			disconnect();
-		} 
-		
+		}
+
 	}
 
 	@Override
 	public void joinBookMember(BookMember bookMember) {
 		conn = getConnect();
-		String sql =   "insert into book_member_info "
-				     + "(member_id,member_password,member_phone)\r\n"
-				     + "values(?, ?, ?)";
+		String sql = "insert into book_member_info " + "(member_id,member_password,member_phone)\r\n"
+				+ "values(?, ?, ?)";
 
-			try {
-				psmt = conn.prepareStatement(sql);
-				psmt.setString(1, bookMember.getMemberId());
-				psmt.setString(2, bookMember.getMemberPassword());
-				psmt.setString(3, bookMember.getPhoneNumber());
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} finally {
-				disconnect();
-			}
-		
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, bookMember.getMemberId());
+			psmt.setString(2, bookMember.getMemberPassword());
+			psmt.setString(3, bookMember.getPhoneNumber());
+			rs = psmt.executeQuery();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+
 	}
 
 	@Override
@@ -342,7 +375,7 @@ public class BookRentalServiceOracle extends BookDAO implements BookRentalServic
 				bookMember.setMemberId(rs.getString("member_id"));
 				bookMember.setMemberPassword(null);
 				bookMember.setPhoneNumber(rs.getString("member_phone"));
-				
+
 				list.add(bookMember);
 
 			}
@@ -356,6 +389,5 @@ public class BookRentalServiceOracle extends BookDAO implements BookRentalServic
 
 		return list;
 	}
-
 
 }
