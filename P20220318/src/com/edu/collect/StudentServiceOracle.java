@@ -24,6 +24,8 @@ public class StudentServiceOracle extends DAO implements StudentService {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
+			disconnect();
 		}
 		
 		

@@ -2,19 +2,26 @@ package test;
 
 public class Car {
 	
-	String color;
-	String gearType;
-	int door;
-	
-	
-	Car() {}
-	
-	Car(String c, String g, int d) {
-		color=c;
-		door = d;
-		gearType= g;
-				
-	}
-	
+	 try
+     {
+         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+         String str = "";
+
+         while((str = br.readLine()) != null)
+         {
+             System.out.println(str);
+         }
+
+     }
+     catch (Exception e)
+     {
+         e.printStackTrace();
+     }
+     
+ }
+
+
+
 
 }
