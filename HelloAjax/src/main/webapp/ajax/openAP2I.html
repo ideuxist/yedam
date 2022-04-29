@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	
+	<input type = "text" id ="sido" value ="대구광역시"><button id = "findBtn">찾기</button>
+	<hr>
+	<div id = "show">
+		<table border = "1">
+			<thead id = "thead"></thead>
+			<tbody id = "tbody"></tbody>
+		</table>
+	</div>
+	<script>
+	//console.log('start')
+	
+	let fields = ['id','sido','address','phoneNumber','zipCode'];
+	
+	
+	globalFnc();	
+	
+	init(); //실행.
+	
+	//this 
+	
+	let obj = {
+	name : 'Hong',
+	age : 20,
+	showInfo: function(){
+	return this.name + ',' + this.age;
+		}
+	}
+	
+	function globalFnc() {
+	console.log(this);
+	}
+	
+	
+	function init(){
+	let url = `https://api.odcloud.kr/api/15077586/v1/centers?page=1&perPage=284&returnType=JSON&serviceKey=sEDImHytAAcYTulOEb0nvCUSBZL38DPUBMdWgNCdlEkeKe4J3Th9IbP1JL1eOZ9KKQn%2FrBx3WEZ7x2EsguDFig%3D%3D`;
+	//비동기 처리방식(Asynchronous Javascript And Xml)
+	let result = '';
+	let xhtp = new XMLHttpRequest(); 
+	xhtp.open('get',url);
+	xhtp.send();
+	xhtp.onload = loadCallBack;
+	
+	let findBtn =document.getElementById("findBtn");
+	findBtn.addEventListener('click',findCallBack);
+	}
+	
+	function findCallBack(){
+		//기능 구현 input.value 속성을 읽어와서 filterAry=>헤더, 바디
+		let searchSido = document.getElementById("sido").value;
+		let filterAry = result.data.filter(function(elem){
+		 	return elem.sido == searchSido != -1;
+		});
+		makeBody(filterAry);
+		
+		//입력값을 지우기.
+		document.getElementById("sido").value='';	
+	}//end of findCallBack()
+	
+	//console.log('end')
+	
+	function loadCallBack(){
+	console.log('center')
+	result = JSON.parse(this.responseText);
+	console.log(result);
+	console.log("총 건수 :"+result.totalCount);
+	
+	console.log(result.data[0]);
+	
+	result.data.forEach(function(elem){
+		if(elem.sido == '서울특별시')
+		console.log(`id: ${elem.id},center : ${elem.centerName}`);
+	      
+	});
+		console.clear();
+		let filterAry = result.data.filter(function(elem){
+		 	return elem.sido == '대전광역시';
+		});
+		 	console.clear();
+		 	console.log(filterAry);
+		//head 생성
+		let head = document.getElementById('thead');
+		let tr = document.createElement('tr');
+		head.appendChild(tr);
+		fields.forEach(function(elem){
+			let td = document.createElement('th');
+			td.innerHTML = elem.toUpperCase();
+			tr.appendChild(td);
+		});
+		makeBody(filterAry)
+		
+	}//end of loadCallBack
+	
+	function makeBody(ary){
+		let body = document.getElementById('tbody');
+		let childTr = document.querySelectorAll('#tbody>tr');
+		//console.log(childTr);
+		//body
+		childTr.forEach(function(elem){
+			//elem.remove(); //tr 삭제
+			body.removeChild(elem);
+		});
+		
+		ary.forEach(function(center){
+			let tr = document.createElement('tr');
+			body.appendChild(tr);
+			fields.forEach(function(elem){
+				let td = document.createElement('td');
+				//address 필드 일 경우에는 링크.
+				if (elem == 'address') {
+				let aTag = document.createElement('a');
+				aTag.setAttribute('href',`daumApi.html?x=${center.lat}&y=${center.lng}`);
+				aTag.innerHTML = center[elem];
+				td.appendChild(aTag);
+				}else {
+				td.innerHTML = center[elem];
+				}
+				
+				tr.appendChild(td);
+			});
+			
+		});
+	}	//end of makebody()
+	
+	
+	
+	
+	
+	
+	
+	
+		
+		
+		
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	</script>
+</body>
+</html>

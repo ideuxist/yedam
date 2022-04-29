@@ -23,25 +23,29 @@
 			let data = JSON.parse(xhtp.response)
 			//console.log(xhtp.response);
 			console.log(data);
-			document.getElementById('list').appendChild(makeTr(data));
+			data.forEach(function(obj){
+			document.getElementById('list').appendChild(makeTr(obj));
+			
+			});
 			//document.getElementById('show').innerHTML=xhtp.response;
 			
 		};
 		
-		function makeTr(obj){
-			obj.forEach(function(val){
+		function makeTr(student){
 			let tr = document.createElement('tr');
 			
-			for (let i in val) {
+			for (let field in student) {
 			let td = document.createElement('td');
-			td.innerHTML = val[i];
+			td.innerHTML = student[field];
 			tr.appendChild(td);
-			console.log(tr);
+			//console.log(tr);
 			}
-			});
-		
 		return tr;
 		}
+			
+			
+			
+		
 		
 	
 		

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ajax/fetch.html</title>
+<script src ="ajax2.js"></script>
+</head>
+<body>
+	<button id = 'chChk'>선택삭제</button>
+	<button id = 'allChk'>전체선택</button>
+	<table id = "table" border = "1">
+	<tr>
+	<td><input type = "checkbox"></td>
+	<td>홍길동</td>
+	</tr>
+	<tr>
+	<td><input type = "checkbox"></td>
+	<td>김길동</td>
+	</tr>
+	<tr>
+	<td><input type = "checkbox"></td>
+	<td>박길동</td>
+	</tr>
+	</table>
+	
+	
+	<script>
+	let findBtn = document.getElementById('chChk');
+	findBtn.addEventListener('click', del);
+	
+	function del() {
+	  let allTr = document.querySelectorAll('tr'); //table 하위에 있는 tr 다 가져오도록
+	  console.log(allTr);
+	  allTr.forEach(function (tr) {
+	    if (tr.firstElementChild.firstElementChild.checked == true) {
+	      tr.remove();
+	    }
+	
+	  });
+	}
+	let findBtn2 = document.getElementById('allChk');
+	findBtn2.addEventListener('click', function () {
+
+	  let allTr = document.querySelectorAll('input');
+	  allTr.forEach(function (tr) {
+      
+    if (tr.checked ==false){
+    tr.checked=true;
+    }
+
+    })
+
+  })
+	
+	//Ajax = > XMLHttpRequest : => fetch
+	
+	let xhtp = new XMLHttpRequest();
+	xhtp.open('get', '../studentList.json');
+	xhtp.send();
+	xhtp.onload = function () {
+	  console.log('xmlhttprequest');
+	  console.log(xhtp.responseText);
+	  
+	  let xhtp2 = new XMLHttpRequest();
+	  xhtp2.onload = function(){
+	  
+	  }
+	}
+	
+	fetch('../studentList.json')
+	.then(function(result) {
+		let val = result.json();	
+		console.log(result);
+		return val;
+	})
+	.then(function(result){
+	console.log(result)
+	})
+	
+	.catch(function(){
+		console.log(error);
+	})
+		
+	</script>
+	
+</body>
+</html>
