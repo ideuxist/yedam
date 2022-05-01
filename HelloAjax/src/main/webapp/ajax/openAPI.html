@@ -63,6 +63,7 @@
       });
 
       makeBody(filterAry);
+      console.log(filterAry);
 
       // 입력값을 지우기.
       document.getElementById("sido").value = '';
@@ -128,7 +129,7 @@
           // address 필드 일 경우에는 링크.
           if (elem == 'address') {
             let aTag = document.createElement('a');
-            aTag.setAttribute('href', `daumApi.html?x=${center.lat}&y=${center.lng}&z=${center.facilityName}`);
+            aTag.setAttribute('href', `daumApi.html?x=${center.lat}&y=${center.lng}`);
             aTag.setAttribute('target', '_blank')
             aTag.innerHTML = center[elem];
             td.appendChild(aTag);

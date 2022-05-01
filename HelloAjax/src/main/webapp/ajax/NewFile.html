@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .button{
+          width : 150px;
+          margin-right: 50px;  
+        }
+
+
+
+    </style>
+    
+    <script>
+        //let sno = document.querySelector('input[name="no"]').value;
+        //console.log(document.querySelector('input[name="no"]').value);
+
+        let insBtn = document.getElementById('insert');
+        console.log(insBtn);
+        insBtn.addEventListener('click',function(){
+            let sno = document.querySelector('input[id="sNo"]').value;
+            let sName = document.querySelector('input[id="sName"]').value;
+            let kScore = document.querySelector('input[id="kScore"]').value;
+            let mScore = document.querySelector('input[id="mScore"]').value;
+            let eScore = document.querySelector('input[id="eScore"]').value;
+
+            let member = {
+                no:sno,
+                name:sName,
+                korScore:kScore,
+                mathScore:mScore,
+                eScore:eScore
+            }
+            console.log(member);
+
+
+        });
+
+
+        
+    </script>
+</head>
+<body>
+    <div id = "bodyStart">
+        <button id = 'insert'>등록</button><button id = 'delete'>삭제</button><br>
+        <label for = "sNo">학번<input  id = "sNo" type ="text" value = "4"></label><br>
+        <label for = "sName">이름<input id = "sName" type ="text" value = "박길동"></label><br>
+        <label for = "kScore">국어점수<input id = "kScore" type ="text" value = "50"></label><br>
+        <label for = "mScore">수학점수<input id = "mScore" type ="text" value = "50"></label><br>
+        <label for = "eScore">영어점수<input id = "eScore" type ="text" value = "50"></label><br>
+        <table border = "1">
+            <thead>
+                <tr>
+                    <th>1번항목</th>
+                    <th>2번항목</th>
+                    <th>3번항목</th>
+                    <th>4번항목</th>
+                    <th>5번항목</th>
+                    <th>삭제</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>홍길동</td>
+                    <td>100</td>
+                    <td>100</td>
+                    <td>100</td>
+                    <td><input type = "checkbox"></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>고길동</td>
+                    <td>80</td>
+                    <td>90</td>
+                    <td>100</td>
+                    <td><input type = "checkbox"></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>김길동</td>
+                    <td>100</td>
+                    <td>90</td>
+                    <td>80</td>
+                    <td><input type = "checkbox"></td>
+                </tr>
+            </tbody>
+
+        </table>
+
+    </div>
+    
+</body>
+</html>
