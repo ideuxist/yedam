@@ -18,9 +18,11 @@ xhtp.onload = function () {
 
 let xhtp2 = new XMLHttpRequest();
 xhtp2.open('get','../coronaServlet.json')
-xhtp2.send();
+xhtp2.send()
 xhtp2.onload = function(){
-	
+	console.log(xhtp2.responseText)
+	let data = JSON.parse(xhtp2.responseText)
+	console.log(data)
 	
 }
 
