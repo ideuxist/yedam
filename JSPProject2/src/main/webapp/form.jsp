@@ -7,7 +7,7 @@
 <title>form.jsp</title>
 </head>
 <body>
-	<form name="frm" action="StudentGetServlet" method="get">
+	<form name="frm" action="StudentGetServlet" method="post">
 		<input type="hidden" name="cmd" value="search"> 
 		number:<input type="number" name="user_id" value="300"><br>
 		Name:<input type="text" name="user_name" value="gildong"><br> 

@@ -44,16 +44,16 @@ public class StudentGetServlet extends HttpServlet {
 				response.getWriter().println("<h3>이름 :"+student.getStudentName()+"</h3>");
 				response.getWriter().println("<h3>영어 :<input type = 'number' name = 'eng_score' value ='"+student.getEngScore()+"'></h3>");
 				response.getWriter().println("<h3>국어 :<input type = 'number' name = 'kor_score' value ='"+student.getKorScore()+"'></h3>");
-				response.getWriter().println("<input type='hidden' name = 'mod' value='mod'>");
+				response.getWriter().println("<input type='hidden' name = 'cmd' value='mod'>");
 				response.getWriter().println("<input type='hidden' name = 'user_id' value='"+student.getStudentNo()+"'>");
 				response.getWriter().println("<input type='hidden' name = 'user_name' value='"+student.getStudentName()+"'>");
-				response.getWriter().println("<input type = 'button' value ='수정'>");
+				response.getWriter().println("<input type = 'submit' value ='수정'>");
 				response.getWriter().println("</form><br>");
 				
 			}else {
 				response.getWriter().println("<h3>조회된 데이터가 없습니다</h3>");
 			}
-			response.sendRedirect("studentList.jsp");	
+			//response.sendRedirect("studentList.jsp");	
 		}else if(cmd !=null && cmd.equals("list")){
 			StudentDAO dao = new StudentDAO();
 			Student stud = new Student();
