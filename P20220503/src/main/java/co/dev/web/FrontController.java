@@ -29,7 +29,7 @@ public class FrontController extends HttpServlet {
 		String url = req.getRequestURI(); // P20220503/memberInsert.do
 		String context = req.getContextPath();
 		String path = url.substring(context.length());
-		
+		System.out.println(context); 
 		Control exeCon = list.get(path);
 		
 		exeCon.execute(req, resp);
