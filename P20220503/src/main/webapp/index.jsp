@@ -8,7 +8,10 @@
 </head>
 <body>
 	<h3>첫페이지 입니다</h3>
-	<a href = "memberView/memberInsert.jsp">회원정보 생성</a><br>
-	<a href = "memberList.do">모든 회원정보</a><br>
+	<a href = "memberView/memberInsert.jsp">회원정보 생성</a><br><br>
+	<a href = "memberView/memberSearch.jsp">회원정보검색</a><br><br>
+	<a href = "memberView/memberUpdate.jsp">회원정보수정</a><br><br>
+	<a href = "memberView/memberDelete.jsp">회원정보삭제</a><br><br>
+	<a href = "memberList.do">모든 회원정보</a><br><br>
 </body>
 </html>

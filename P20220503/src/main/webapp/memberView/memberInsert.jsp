@@ -15,5 +15,7 @@
 	메일 : <input type = "email" name = "email"><br>
 	<input type = "submit" value = "추가">	
 	</form>
+	<br><br>
+	<jsp:include page="home.jsp"></jsp:include>
 </body>
 </html>

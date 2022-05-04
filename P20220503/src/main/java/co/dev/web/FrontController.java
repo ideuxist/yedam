@@ -20,6 +20,8 @@ public class FrontController extends HttpServlet {
 		list.put("/memberInsert.do", new MemberInsertControl());
 		list.put("/memberUpdate.do", new MemberUpdateControl());
 		list.put("/memberList.do", new MemberListControl());
+		list.put("/memberSearch.do", new MemberSearchControl());
+		list.put("/memberDelete.do", new MemberDeleteControl());
 	}
 
 
@@ -29,7 +31,7 @@ public class FrontController extends HttpServlet {
 		String url = req.getRequestURI(); // P20220503/memberInsert.do
 		String context = req.getContextPath();
 		String path = url.substring(context.length());
-		System.out.println(context); 
+		//System.out.println(context); 
 		Control exeCon = list.get(path);
 		
 		exeCon.execute(req, resp);
