@@ -23,6 +23,7 @@
 						<th>이름</th>
 						<th>이메일</th>
 						<th>비밀번호</th>
+						<th>동영상</th>
 					</tr>
 				<tbody>
 					<c:forEach items="${all}" var="member">
@@ -31,6 +32,11 @@
 							<td>${member.name}</td>
 							<td>${member.email}</td>
 							<td>${member.passwd}</td>
+							<td><c:if test="${!empty member.profile}">
+							<video width = "300" height ="200" autoplay controls loop src="${pageContext.servletContext.contextPath}/upload/${member.profile}"></video>
+							</c:if>
+							</td>
+							
 						</tr>
 					</c:forEach>
 				</tbody>
