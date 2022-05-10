@@ -21,7 +21,7 @@ public class MemberUpdateControl implements Control {
 		
 		if (id.isEmpty() || name.isBlank() || passwd.isBlank() || email.isBlank()) {
 			request.setAttribute("error", "모든 항목을 입력하세요!!!");
-			request.getRequestDispatcher("memberView/memberUpdate.jsp").forward(request, response);
+			request.getRequestDispatcher("memberView/memberUpdate.jsp");
 			
 		}
 				

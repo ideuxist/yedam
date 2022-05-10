@@ -7,7 +7,7 @@
 <title>memberResult/memberUpdateOutput.jsp</title>
 </head>
 <body>
- 	<h3>${id }님의 정보가 수정되었습니다</h3>
+ 	<h3>${title }책의 정보가 수정되었습니다</h3>
  	<br><br>
  	<jsp:include page="home.jsp"></jsp:include>
 </body>

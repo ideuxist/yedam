@@ -203,15 +203,7 @@ input {
 	  var li = document.createElement("li");
 	  var inputValue = document.getElementById("myInput").value;
 	  console.log(inputValue)
-	  fetch('ToDoListServlet',{
-              			method:'post',
-              			headers:{'Content-Type': 'application/x-www-form-urlencoded'},
-              			body:`job=insert&todo=${inputValue}`
-              }).then()
-              .catch(error=>{
-            	  console.log(error)
-              })
-	  
+	  	  
 	  
 	  var t = document.createTextNode(inputValue);
 	  li.appendChild(t);
@@ -234,6 +226,15 @@ input {
 	      div.style.display = "none";
 	    }
 	  }
+	  fetch('ToDoListServlet',{
+              			method:'post',
+              			headers:{'Content-Type': 'application/x-www-form-urlencoded'},
+              			body:`job=insert&todo=${inputValue}`
+              }).then()
+              .catch(error=>{
+            	  console.log(error)
+              })
+
 	}
 	
 	
