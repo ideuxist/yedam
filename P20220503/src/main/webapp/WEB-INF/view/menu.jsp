@@ -17,11 +17,11 @@
 			  <a class="list-group-item list-group-item-action list-group-item-light p-3"
 				href="${pageContext.request.contextPath}/memberView/memberInsert.tiles">회원정보생성</a> 
 			  <a class="list-group-item list-group-item-action list-group-item-light p-3"
-				href="${pageContext.request.contextPath}/memberView/memberSearch.jsp">회원정보검색</a> 
+				href="${pageContext.request.contextPath}/memberView/memberSearch.tiles">회원정보검색</a> 
 				<a class="list-group-item list-group-item-action list-group-item-light p-3"
-				href="${pageContext.request.contextPath}/memberView/memberUpdate.jsp">회원정보수정</a> 
+				href="${pageContext.request.contextPath}/memberView/memberUpdate.tiles">회원정보수정</a> 
 				<a class="list-group-item list-group-item-action list-group-item-light p-3"
-				href="${pageContext.request.contextPath}/memberView/memberDelete.jsp">회원정보삭제</a> 
+				href="${pageContext.request.contextPath}/memberView/memberDelete.tiles">회원정보삭제</a> 
 				<a class="list-group-item list-group-item-action list-group-item-light p-3"
 				href="${pageContext.request.contextPath}/memberList.do">모든 회원정보</a> 
 				<a class="list-group-item list-group-item-action list-group-item-light p-3"
